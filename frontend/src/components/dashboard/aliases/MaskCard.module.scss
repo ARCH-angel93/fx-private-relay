@@ -125,6 +125,34 @@
     }
   }
 
+  .favorite-button {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    color: color.$grey-40;
+    border-radius: $border-radius-sm;
+    width: $layout-sm;
+    padding: 0;
+    z-index: 3;
+
+    @media (any-pointer: coarse) {
+      width: $layout-md;
+    }
+
+    &:hover {
+      background-color: color.$grey-05;
+      color: color.$yellow-50;
+    }
+
+    .favorite-active {
+      color: color.$yellow-50;
+    }
+  }
+
   .expand-button {
     flex: 0 0 auto;
     display: flex;
