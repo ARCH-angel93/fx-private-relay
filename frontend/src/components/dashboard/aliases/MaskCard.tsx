@@ -186,8 +186,9 @@ export const MaskCard = (props: Props) => {
           >
             <StarIcon
               alt=""
-              width={20}
-              height={20}
+              aria-hidden="true"
+              width={24}
+              height={24}
               className={props.mask.is_favorite ? styles["favorite-active"] : ""}
             />
           </button>
