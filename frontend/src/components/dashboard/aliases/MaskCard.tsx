@@ -36,7 +36,7 @@ import { ProfileData } from "../../../hooks/api/profile";
 import { RuntimeData } from "../../../hooks/api/types";
 import { useL10n } from "../../../hooks/l10n";
 import { LabelEditor } from "./LabelEditor";
-import { ArrowDownIcon, CopyIcon, LockIcon } from "../../Icons";
+import { ArrowDownIcon, CopyIcon, LockIcon, StarIcon } from "../../Icons";
 import Image from "../../Image";
 import { getLocale } from "../../../functions/getLocale";
 import { isFlagActive } from "../../../functions/waffle";
@@ -170,6 +170,27 @@ export const MaskCard = (props: Props) => {
                     )}
             </div>
           </div>
+          <button
+            className={styles["favorite-button"]}
+            onClick={() => props.onUpdate({ is_favorite: !props.mask.is_favorite })}
+            aria-label={
+              props.mask.is_favorite
+                ? l10n.getString("profile-label-remove-favorite")
+                : l10n.getString("profile-label-add-favorite")
+            }
+            title={
+              props.mask.is_favorite
+                ? l10n.getString("profile-label-remove-favorite")
+                : l10n.getString("profile-label-add-favorite")
+            }
+          >
+            <StarIcon
+              aria-hidden="true"
+              width={24}
+              height={24}
+              className={props.mask.is_favorite ? styles["favorite-active"] : ""}
+            />
+          </button>
           <button
             {...expandButtonProps}
             ref={expandButtonRef}

@@ -110,3 +110,47 @@ def test_flag_serializer_cannot_change_name_to_manage_flags(test_flag):
     assert not serializer.is_valid()
     expected = "Changing the `manage_flags` flag is not allowed."
     assert str(serializer.errors["non_field_errors"][0]) == expected
+
+
+class FavoriteFieldTest(APITestCase):
+    def _get_token_for_user(self, user: User) -> Token:
+        """Get DRF Token for user with strict type checks."""
+        if not hasattr(Token, "objects"):
+            raise AttributeError("Token must have objects attribute.")
+        token = Token.objects.get(user=user)
+        if not isinstance(token, Token):
+            raise TypeError("token must be of type Token.")
+        return token
+
+    def test_can_set_favorite_field(self):
+        """Test that users can set the is_favorite field"""
+        free_user = make_free_test_user()
+        free_alias = baker.make(RelayAddress, user=free_user, is_favorite=False)
+        assert free_alias.is_favorite is False
+
+        url = reverse("relayaddress-detail", args=[free_alias.id])
+        data = {"is_favorite": True}
+        free_token = self._get_token_for_user(free_user)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + free_token.key)
+        response = self.client.patch(url, data, format="json")
+
+        assert response.status_code == 200
+        free_alias.refresh_from_db()
+        assert free_alias.is_favorite is True
+
+    def test_can_unset_favorite_field(self):
+        """Test that users can unset the is_favorite field"""
+        free_user = make_free_test_user()
+        free_alias = baker.make(RelayAddress, user=free_user, is_favorite=True)
+        assert free_alias.is_favorite is True
+
+        url = reverse("relayaddress-detail", args=[free_alias.id])
+        data = {"is_favorite": False}
+        free_token = self._get_token_for_user(free_user)
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + free_token.key)
+        response = self.client.patch(url, data, format="json")
+
+        assert response.status_code == 200
+        free_alias.refresh_from_db()
+        assert free_alias.is_favorite is False
+

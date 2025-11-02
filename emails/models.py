@@ -104,6 +104,7 @@ class RelayAddress(models.Model):
     generated_for = models.CharField(max_length=255, blank=True)
     block_list_emails = models.BooleanField(default=False)
     used_on = models.TextField(default=None, blank=True, null=True)
+    is_favorite = models.BooleanField(default=False)
 
     class Meta:
         indexes = [
@@ -238,6 +239,7 @@ class DomainAddress(models.Model):
     num_spam = models.PositiveIntegerField(default=0)
     block_list_emails = models.BooleanField(default=False)
     used_on = models.TextField(default=None, blank=True, null=True)
+    is_favorite = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ["user", "address"]

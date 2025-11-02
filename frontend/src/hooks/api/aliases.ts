@@ -24,6 +24,7 @@ export type CommonAliasData = {
   num_replied: number;
   num_level_one_trackers_blocked: number;
   used_on: string | "" | null;
+  is_favorite: boolean;
 };
 
 export type RandomAliasData = CommonAliasData & {

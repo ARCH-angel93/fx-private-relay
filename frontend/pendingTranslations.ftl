@@ -179,3 +179,7 @@ whatsnew-megabundle-premium-cta = Upgrade my protection
 
 phone-onboarding-step1-button-cta-2 = Sign up
 phone-onboarding-step1-learn-more = Learn more
+
+# Favorite feature
+profile-label-add-favorite = Mark as favorite
+profile-label-remove-favorite = Remove from favorites
