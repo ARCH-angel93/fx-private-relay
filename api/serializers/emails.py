@@ -35,6 +35,7 @@ class RelayAddressSerializer(PremiumValidatorsMixin, serializers.ModelSerializer
             "generated_for",
             "block_list_emails",
             "used_on",
+            "is_favorite",
             # read-only
             "id",
             "address",
@@ -77,6 +78,7 @@ class DomainAddressSerializer(PremiumValidatorsMixin, serializers.ModelSerialize
             "description",
             "block_list_emails",
             "used_on",
+            "is_favorite",
             # read-only
             "id",
             "address",
