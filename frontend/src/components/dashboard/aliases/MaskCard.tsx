@@ -185,7 +185,6 @@ export const MaskCard = (props: Props) => {
             }
           >
             <StarIcon
-              alt=""
               aria-hidden="true"
               width={24}
               height={24}
